@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Search Results</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="header__logo">News Search Results</div>
+        <div class="header__search">
+            <form action="/" method="POST">
+                <input type="text" name="search" placeholder="Search for news" required>
+                <input type="submit" value="Search">
+            </form>
+        </div>
+    </header>
+    <div class="wrapper"></div>
+    <div class="news">
+        <% if(articles != null) { %>
+        <% articles.forEach(article => { %>
+            <div class="news__card">
+                <img src="<%- article.image_url %>" alt="<%- article.title %>">
+                <h2>
+                    <a href="<%= article.link %>"><%= article.title %></a>
+                </h2>
+                <p><%= article.description %></p>
+                <a href="/article/<%- article.article_id %>">Read more</a>
+            </div>
+        <% }) %>
+        <% } else { %>
+            No posts found.
+        <% } %>
+    </div>
+</body>
+</html>
